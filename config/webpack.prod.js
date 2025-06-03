@@ -95,5 +95,6 @@ module.exports = {
         new CssMinimizerPlugin()
     ],
     // 模式
-    mode: "production"
+    mode: "production",
+    devtool: "source-map",
 }
