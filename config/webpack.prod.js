@@ -1,6 +1,6 @@
 const path = require('path'); // nodejs和兴模块 专门用来处理路径问题
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // nodejs和兴模块 专门用来处理路径问题
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 拆分css到不同路径工具
 module.exports = {
     // 入口
     entry: "./src/main.js",
