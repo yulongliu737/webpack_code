@@ -7,7 +7,7 @@ module.exports = {
     output: {
         // __dirname nodejs的遍历，代表当前文件的文件夹目录
         path: path.resolve(__dirname, 'dist'),
-        filename: "output.js",
+        filename: "static/js/output.js",
     },
     // 加载器
     module: {
@@ -57,6 +57,10 @@ module.exports = {
                         // 优点：减少请求数量 缺点：体积会更大
                         maxSize: 10 * 1024,
                     }
+                },
+                generator: {
+                    // 输出图片名称 hash值只取前10位
+                    filename: "static/images/[hash:10][ext][query]",
                 }
             }
         ]
