@@ -1,4 +1,5 @@
 const path = require('path'); // nodejs和兴模块 专门用来处理路径问题
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // nodejs和兴模块 专门用来处理路径问题
 
 module.exports = {
     // 入口
@@ -82,6 +83,10 @@ module.exports = {
     },
     // 插件
     plugins: [
+        new HtmlWebpackPlugin({
+            // 以public/index.html文件创建新的html文件，新的文件结构和原来一致会自动引入包输出的资源
+            template: path.resolve(__dirname, 'public/index.html'),
+        })
     ],
     // 模式
     mode: "development"
