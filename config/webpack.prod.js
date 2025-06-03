@@ -7,7 +7,7 @@ module.exports = {
     // 输出
     output: {
         // __dirname nodejs的遍历，代表当前文件的文件夹目录
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../dist'),
         filename: "static/js/output.js",
         // 自动清空上次打包的内容
         clean: true
@@ -85,15 +85,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             // 以public/index.html文件创建新的html文件，新的文件结构和原来一致会自动引入包输出的资源
-            template: path.resolve(__dirname, 'public/index.html'),
+            template: path.resolve(__dirname, '../public/index.html'),
         })
     ],
-    // 开发服务器 (热部署)
-    devServer: {
-        host:"127.0.0.1",
-        port: 3000,
-        open: true, // 是否自动打开浏览器
-    },
     // 模式
-    mode: "development"
+    mode: "production"
 }
