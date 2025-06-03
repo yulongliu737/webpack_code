@@ -47,6 +47,17 @@ module.exports = {
                     "css-loader", // 将css资源编译成commonjs的模块到js
                     "stylus-loader", // 将stylus编译成css文件
                 ]
+            },
+            {
+                test: /\.(png|jpe?g|gif|webp|svg)$/,
+                type: "asset",
+                parser: {
+                    dataUrlCondition: {
+                        // 小于10kb的图标转base64
+                        // 优点：减少请求数量 缺点：体积会更大
+                        maxSize: 10 * 1024,
+                    }
+                }
             }
         ]
     },
