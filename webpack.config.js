@@ -72,6 +72,11 @@ module.exports = {
                     // 输出图片名称 hash值只取前10位
                     filename: "static/media/[hash:10][ext][query]",
                 }
+            },
+            {
+                test: /\.(js)$/,
+                exclude: /node_modules/,
+                loader: "babel-loader",
             }
         ]
     },
