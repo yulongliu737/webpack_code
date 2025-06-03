@@ -21,6 +21,8 @@
     "less": "^4.3.0",
     "less-loader": "^12.3.0",
     "mini-css-extract-plugin": "^2.9.2",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^10.2.0",
     "sass": "^1.89.1",
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
@@ -28,5 +30,8 @@
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.1"
-  }
+  },
+  "browserslist": [
+    "ie >=8"
+  ]
 }

@@ -22,6 +22,16 @@ module.exports = {
                     // 执行顺序，从下到上
                     MiniCssExtractPlugin.loader, // 提取css成单独文件
                     "css-loader", // 将css资源编译成commonjs的模块到js
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    "postcss-preset-env", // 能解决大多数样式兼容性问题
+                                ]
+                            }
+                        }
+                    }
                 ]
             },
             {
@@ -30,6 +40,16 @@ module.exports = {
                     // 执行顺序，从下到上
                     MiniCssExtractPlugin.loader, // 提取css成单独文件
                     "css-loader", // 将css资源编译成commonjs的模块到js
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    "postcss-preset-env", // 能解决大多数样式兼容性问题
+                                ]
+                            }
+                        }
+                    },
                     "less-loader", // 将less编译成css文件
                 ]
             },
@@ -39,6 +59,16 @@ module.exports = {
                     // 执行顺序，从下到上
                     MiniCssExtractPlugin.loader, // 提取css成单独文件
                     "css-loader", // 将css资源编译成commonjs的模块到js
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    "postcss-preset-env", // 能解决大多数样式兼容性问题
+                                ]
+                            }
+                        }
+                    },
                     "sass-loader", // 将sass编译成css文件
                 ]
             },
@@ -48,6 +78,16 @@ module.exports = {
                     // 执行顺序，从下到上
                     MiniCssExtractPlugin.loader, // 提取css成单独文件
                     "css-loader", // 将css资源编译成commonjs的模块到js
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    "postcss-preset-env", // 能解决大多数样式兼容性问题
+                                ]
+                            }
+                        }
+                    },
                     "stylus-loader", // 将stylus编译成css文件
                 ]
             },
@@ -84,7 +124,7 @@ module.exports = {
     // 插件
     plugins: [
         new HtmlWebpackPlugin({
-            // 以public/index.html文件创建新的html文件，新的文件结构和原来一致会自动引入包输出的资源
+            // 以public/index.html文件创建新的html文件，新的文件结构和原来一致，会自动引入包输出的资源
             template: path.resolve(__dirname, '../public/index.html'),
         }),
         new MiniCssExtractPlugin({
