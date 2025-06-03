@@ -1,6 +1,6 @@
 const path = require('path'); // nodejs和兴模块 专门用来处理路径问题
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // nodejs和兴模块 专门用来处理路径问题
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     // 入口
     entry: "./src/main.js",
@@ -20,7 +20,7 @@ module.exports = {
                 test: /\.css$/, // 只检测.css文件
                 use: [
                     // 执行顺序，从下到上
-                    "style-loader", // 将js中css通过创建style标签添加到html文件中
+                    MiniCssExtractPlugin.loader, // 提取css成单独文件
                     "css-loader", // 将css资源编译成commonjs的模块到js
                 ]
             },
@@ -28,7 +28,7 @@ module.exports = {
                 test: /\.less/,
                 use: [
                     // 执行顺序，从下到上
-                    "style-loader", // 将js中css通过创建style标签添加到html文件中
+                    MiniCssExtractPlugin.loader, // 提取css成单独文件
                     "css-loader", // 将css资源编译成commonjs的模块到js
                     "less-loader", // 将less编译成css文件
                 ]
@@ -37,7 +37,7 @@ module.exports = {
                 test: /\.s[ac]ss/,
                 use: [
                     // 执行顺序，从下到上
-                    "style-loader", // 将js中css通过创建style标签添加到html文件中
+                    MiniCssExtractPlugin.loader, // 提取css成单独文件
                     "css-loader", // 将css资源编译成commonjs的模块到js
                     "sass-loader", // 将sass编译成css文件
                 ]
@@ -46,7 +46,7 @@ module.exports = {
                 test: /\.styl/,
                 use: [
                     // 执行顺序，从下到上
-                    "style-loader", // 将js中css通过创建style标签添加到html文件中
+                    MiniCssExtractPlugin.loader, // 提取css成单独文件
                     "css-loader", // 将css资源编译成commonjs的模块到js
                     "stylus-loader", // 将stylus编译成css文件
                 ]
@@ -86,6 +86,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             // 以public/index.html文件创建新的html文件，新的文件结构和原来一致会自动引入包输出的资源
             template: path.resolve(__dirname, '../public/index.html'),
+        }),
+        new MiniCssExtractPlugin({
+            filename: "static/css/main.css" // 指定所有css文件打包路径
         })
     ],
     // 模式
