@@ -4,3 +4,12 @@
     background-image: url("../images/cat.jpg");
     background-size: cover;
 }
+.news {
+    width: 100px;
+    height: 100px;
+    background-color: chocolate;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 100px;
+    color: aliceblue;
+}
