@@ -8,6 +8,8 @@ module.exports = {
         // __dirname nodejs的遍历，代表当前文件的文件夹目录
         path: path.resolve(__dirname, 'dist'),
         filename: "static/js/output.js",
+        // 自动清空上次打包的内容
+        clean: true
     },
     // 加载器
     module: {
