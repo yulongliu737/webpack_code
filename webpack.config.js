@@ -52,7 +52,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif|webp|svg)$/,
-                type: "asset",
+                type: "asset", // 指定转base64类型
                 parser: {
                     dataUrlCondition: {
                         // 小于10kb的图标转base64
@@ -63,6 +63,14 @@ module.exports = {
                 generator: {
                     // 输出图片名称 hash值只取前10位
                     filename: "static/images/[hash:10][ext][query]",
+                }
+            },
+            {
+                test: /\.(ttf|woff2?)$/,
+                type: "asset/resource", // 按照原始文件输出
+                generator: {
+                    // 输出图片名称 hash值只取前10位
+                    filename: "static/media/[hash:10][ext][query]",
                 }
             }
         ]
