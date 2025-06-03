@@ -1,6 +1,7 @@
 const path = require('path'); // nodejs和兴模块 专门用来处理路径问题
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // nodejs和兴模块 专门用来处理路径问题
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 拆分css到不同路径工具
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // css压缩插件
 
 function getStyleLoader(pre) {
     return [
@@ -90,7 +91,8 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: "static/css/main.css" // 指定所有css文件打包路径
-        })
+        }),
+        new CssMinimizerPlugin()
     ],
     // 模式
     mode: "production"
