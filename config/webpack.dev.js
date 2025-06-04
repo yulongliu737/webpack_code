@@ -83,6 +83,7 @@ module.exports = {
                         options: {
                             cacheDirectory: true, // 开启babel缓存
                             cacheCompression: false, // 关闭缓存文件压缩
+                            plugins: ["@babel/plugin-transform-runtime"], // 减少代码体积
                         }
                     }
                 ]
@@ -104,5 +105,5 @@ module.exports = {
     },
     // 模式
     mode: "development",
-    devtool: "cheap-module-eval-source-map",
+    devtool: "cheap-module-source-map",
 }
