@@ -28,6 +28,7 @@
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
     "stylus-loader": "^8.1.1",
+    "thread-loader": "^4.0.4",
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.1"
@@ -36,5 +37,8 @@
     "last 2 version",
     "> 1%",
     "not dead"
-  ]
+  ],
+  "dependencies": {
+    "terser-webpack-plugin": "^5.3.14"
+  }
 }

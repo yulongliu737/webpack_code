@@ -2,6 +2,10 @@ const path = require('path'); // nodejs和兴模块 专门用来处理路径问�
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // nodejs和兴模块 专门用来处理路径问题
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 拆分css到不同路径工具
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // css压缩插件
+const os = require("os");
+const TerserWebpackPlugin = require('terser-webpack-plugin')
+
+const threads = os.cpus().length; // 获取cpu的核心数
 
 function getStyleLoader(pre) {
     return [
@@ -83,11 +87,21 @@ module.exports = {
                         test: /\.(js)$/,
                         // exclude: /node_modules/, // 排除node_modules下的文件，其他文件都处理 不能喝include同时使用
                         include: path.resolve(__dirname, '../src'), // 只处理src下的文件
-                        loader: "babel-loader",
-                        options: {
-                            cacheDirectory: true, // 开启babel缓存
-                            cacheCompression: false, // 关闭缓存文件压缩
-                        }
+                        use: [
+                            {
+                                loader: 'thread-loader', // 开启多线程
+                                options: {
+                                    workers: threads // 线程数量
+                                }
+                            },
+                            {
+                                loader: "babel-loader",
+                                options: {
+                                    cacheDirectory: true, // 开启babel缓存
+                                    cacheCompression: false, // 关闭缓存文件压缩
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -102,7 +116,10 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "static/css/main.css" // 指定所有css文件打包路径
         }),
-        new CssMinimizerPlugin()
+        new CssMinimizerPlugin(),
+        new TerserWebpackPlugin({
+            parallel: threads,
+        })
     ],
     // 模式
     mode: "production",
