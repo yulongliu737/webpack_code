@@ -84,6 +84,10 @@ module.exports = {
                         // exclude: /node_modules/, // 排除node_modules下的文件，其他文件都处理 不能喝include同时使用
                         include: path.resolve(__dirname, '../src'), // 只处理src下的文件
                         loader: "babel-loader",
+                        options: {
+                            cacheDirectory: true, // 开启babel缓存
+                            cacheCompression: false, // 关闭缓存文件压缩
+                        }
                     }
                 ]
             }

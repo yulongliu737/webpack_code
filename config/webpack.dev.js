@@ -80,6 +80,10 @@ module.exports = {
                         test: /\.(js)$/,
                         exclude: /node_modules/,
                         loader: "babel-loader",
+                        options: {
+                            cacheDirectory: true, // 开启babel缓存
+                            cacheCompression: false, // 关闭缓存文件压缩
+                        }
                     }
                 ]
             }
