@@ -38,48 +38,53 @@ module.exports = {
         rules: [
             // loader的配置
             {
-                test: /\.css$/, // 只检测.css文件
-                use: getStyleLoader()
-            },
-            {
-                test: /\.less/,
-                use: getStyleLoader('less-loader')
-            },
-            {
-                test: /\.s[ac]ss/,
-                use: getStyleLoader('sass-loader')
-            },
-            {
-                test: /\.styl/,
-                use: getStyleLoader('stylus-loader')
-            },
-            {
-                test: /\.(png|jpe?g|gif|webp|svg)$/,
-                type: "asset", // 指定转base64类型
-                parser: {
-                    dataUrlCondition: {
-                        // 小于10kb的图标转base64
-                        // 优点：减少请求数量 缺点：体积会更大
-                        maxSize: 10 * 1024,
+                // 每个文件只能被其中一个loader配置处理
+                oneOf: [
+                    {
+                        test: /\.css$/, // 只检测.css文件
+                        use: getStyleLoader()
+                    },
+                    {
+                        test: /\.less/,
+                        use: getStyleLoader('less-loader')
+                    },
+                    {
+                        test: /\.s[ac]ss/,
+                        use: getStyleLoader('sass-loader')
+                    },
+                    {
+                        test: /\.styl/,
+                        use: getStyleLoader('stylus-loader')
+                    },
+                    {
+                        test: /\.(png|jpe?g|gif|webp|svg)$/,
+                        type: "asset", // 指定转base64类型
+                        parser: {
+                            dataUrlCondition: {
+                                // 小于10kb的图标转base64
+                                // 优点：减少请求数量 缺点：体积会更大
+                                maxSize: 10 * 1024,
+                            }
+                        },
+                        generator: {
+                            // 输出图片名称 hash值只取前10位
+                            filename: "static/images/[hash:10][ext][query]",
+                        }
+                    },
+                    {
+                        test: /\.(ttf|woff2?)$/,
+                        type: "asset/resource", // 按照原始文件输出
+                        generator: {
+                            // 输出图片名称 hash值只取前10位
+                            filename: "static/media/[hash:10][ext][query]",
+                        }
+                    },
+                    {
+                        test: /\.(js)$/,
+                        exclude: /node_modules/,
+                        loader: "babel-loader",
                     }
-                },
-                generator: {
-                    // 输出图片名称 hash值只取前10位
-                    filename: "static/images/[hash:10][ext][query]",
-                }
-            },
-            {
-                test: /\.(ttf|woff2?)$/,
-                type: "asset/resource", // 按照原始文件输出
-                generator: {
-                    // 输出图片名称 hash值只取前10位
-                    filename: "static/media/[hash:10][ext][query]",
-                }
-            },
-            {
-                test: /\.(js)$/,
-                exclude: /node_modules/,
-                loader: "babel-loader",
+                ]
             }
         ]
     },
