@@ -81,7 +81,8 @@ module.exports = {
                     },
                     {
                         test: /\.(js)$/,
-                        exclude: /node_modules/,
+                        // exclude: /node_modules/, // 排除node_modules下的文件，其他文件都处理 不能喝include同时使用
+                        include: path.resolve(__dirname, '../src'), // 只处理src下的文件
                         loader: "babel-loader",
                     }
                 ]
